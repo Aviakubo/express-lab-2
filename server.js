@@ -7,8 +7,13 @@ app.get('/greeting/:name', (req, res) => {
     res.send('Hello, ' + req.params.name);
 });
 
-app.get('/tip', (req, res) => {
-    res.send('Hello Tip');
+app.get('/tip/:total/:tipPercentage', (req, res) => {
+    var totalBill = parseInt(req.params.total);
+    var tipPercent = parseInt(req.params.tipPercentage);
+    var tipAmount = (tipPercent / totalBill) * 100;
+    res.send('Your tip is $' + tipAmount)
 });
+
+
 
 app.listen(3000);
